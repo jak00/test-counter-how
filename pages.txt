@@ -3,4 +3,4 @@ Two (2)
 żółw
 $x^3$
 FFFFOOOOUUUURRRR
-\bf{five} gold rings
+{\bf five} gold rings
