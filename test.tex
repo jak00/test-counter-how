@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\advance\textheight-20\baselineskip
+\advance\paperheight-20\baselineskip
+\pdfpageheight\paperheight
+
+
+\makeatletter
+
+%%%%%
+% filler text
+\def\txt#1#2{%
+\count@#1\relax
+\@tempcnta#2\relax
+\@txt}
+\def\@txt{%
+\let\MessageBreak\space\fontencoding{T1}\selectfont
+\ifnum\numexpr(\count@/7)*7=\count@\@eha\space \@ehb\space\fi
+\ifnum\numexpr(\count@/5)*5=\count@\@eha\space \@ehc\space\fi
+\ifodd\count@ Red yellow blue green balck white. \fi
+\ifnum\numexpr(\count@/9)*9=\count@ One two three four five. \fi
+\advance\count@\@ne
+\ifnum\@tempcnta>\count@
+\expandafter\@txt
+\fi
+}
+
+%%%%%%%%%%%
+
+\newread\pagenofile
+\openin\pagenofile=pages.txt
+\count@\z@
+\loop
+\advance\count@\@ne
+\ifeof\pagenofile
+\else
+\read\pagenofile to \tmp
+\expandafter\let\csname page=\the\count@\endcsname\tmp
+%%%debugging\expandafter\show\csname page=\the\count@\endcsname
+\repeat
+
+\renewcommand\thepage{\csname page=\arabic{page}\endcsname}
+
+\begin{document}
+
+\txt{1}{100}
+
+
+
+\end{document}
+
